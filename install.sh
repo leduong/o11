@@ -24,8 +24,7 @@ wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr
 wget https://github.com/leduong/o11/raw/refs/heads/main/server
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11.sh
-wget https://github.com/leduong/o11/raw/refs/heads/main/server.sh
-chmod +x server o11 o11.sh server.sh
+chmod +x server o11 o11.sh
 
 
 cat <<EOL >> /etc/fstab
@@ -57,7 +56,7 @@ Description=Auto-start O11 Server
 After=network.target
 
 [Service]
-ExecStart=/home/o11/server.sh
+ExecStart=/home/o11/server
 WorkingDirectory=/home/o11/
 Restart=always
 User=root
