@@ -39,7 +39,7 @@ Description=Auto-start O11 Streammer
 After=network.target
 
 [Service]
-ExecStart=/home/o11/o11.sh
+ExecStart=/home/o11/run.sh
 WorkingDirectory=/home/o11/
 Restart=always
 User=root
