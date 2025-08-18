@@ -23,8 +23,8 @@ ln -sf /mnt/hls
 wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr
 wget https://github.com/leduong/o11/raw/refs/heads/main/server
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11
-wget https://github.com/leduong/o11/raw/refs/heads/main/o11.sh
-chmod +x server o11 o11.sh
+wget https://github.com/leduong/o11/raw/refs/heads/main/run.sh
+chmod +x server o11 run.sh
 
 
 cat <<EOL >> /etc/fstab
