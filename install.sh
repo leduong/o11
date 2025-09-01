@@ -13,7 +13,7 @@ sysctl -p
 
 
 # Append new tmpfs entries to /etc/fstab
-mkdir -p /home/o11
+adduser --disabled-password --shell /bin/bash --gecos "Over-the-Top" o11
 cd /home/o11
 mkdir -p /mnt/hls
 mkdir -p /mnt/dl
