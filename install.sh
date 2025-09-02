@@ -42,9 +42,9 @@ After=network.target
 ExecStart=/home/o11/run.sh
 WorkingDirectory=/home/o11/
 Restart=always
-User=root
-StandardOutput=append:/var/log/o11.log
-StandardError=append:/var/log/o11.log
+User=o11
+StandardOutput=append:/home/o11/o11.log
+StandardError=append:/home/o11/o11.log
 
 [Install]
 WantedBy=multi-user.target
