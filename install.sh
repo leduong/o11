@@ -1,7 +1,7 @@
 # Update the package list and upgrade all packages
 echo "Updating package list and upgrading packages..."
 apt update && apt upgrade -y
-apt install -y ufw redis-server ffmpeg wget
+apt install -y ufw redis-server ffmpeg wget python3-pip
 
 echo "fs.file-max = 1048576" >> /etc/sysctl.conf
 echo "net.core.somaxconn=65535" >> /etc/sysctl.conf
