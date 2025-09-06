@@ -14,7 +14,8 @@ sysctl -p
 
 # Append new tmpfs entries to /etc/fstab
 adduser --disabled-password --shell /bin/bash --gecos "Over-the-Top" o11
-cd /home/o11
+su o11 && cd /home/o11
+pip3 install --user --break-system-packages curl_cffi redis pywidevine
 mkdir -p /mnt/hls
 mkdir -p /mnt/dl
 ln -sf /mnt/dl
