@@ -68,11 +68,8 @@ StandardError=append:/var/log/server.log
 WantedBy=multi-user.target
 EOL
 
-adduser --disabled-password --shell /bin/bash --gecos "Over-the-Top" o11
-su o11 && cd /home/o11
-pip3 install --user --break-system-packages curl_cffi redis pywidevine
-exit
 
+echo "Installation complete. Please reboot the system."
 systemctl daemon-reload
 systemctl enable server.service
 systemctl start server.service
