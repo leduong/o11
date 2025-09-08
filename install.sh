@@ -1,32 +1,35 @@
 # Update the package list and upgrade all packages
 echo "Updating package list and upgrading packages..."
-apt update && apt upgrade -y
-apt install -y ufw redis-server ffmpeg wget
+# apt update && apt upgrade -y
+apt install -y ufw redis-server ffmpeg wget python3-pip
 
 echo "fs.file-max = 1048576" >> /etc/sysctl.conf
 echo "net.core.somaxconn=65535" >> /etc/sysctl.conf
 echo "net.ipv4.tcp_max_syn_backlog=4096" >> /etc/sysctl.conf
-echo "* soft nofile 1048576" >> /etc/security/limits.conf
-echo "* hard nofile 1048576" >> /etc/security/limits.conf
-echo "DefaultLimitNOFILE=102456:524288" >> /etc/systemd/system.conf
+echo "o11 soft nofile 1048576" >> /etc/security/limits.conf
+echo "o11 hard nofile 1048576" >> /etc/security/limits.conf
+echo "DefaultLimitNOFILE=204890:524288" >> /etc/systemd/system.conf
 sysctl -p
 
+# Create a new user for running the application
+echo "Creating user 'o11'..."
+adduser --disabled-password --shell /bin/bash --gecos "Over-the-Top" o11
+su - o11 -c "pip3 install --user --break-system-packages curl_cffi redis pywidevine pytz"
+
+wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr -O /home/o11/lic.cr
+wget https://github.com/leduong/o11/raw/refs/heads/main/server -O /home/o11/server
+wget https://github.com/leduong/o11/raw/refs/heads/main/o11 -O /home/o11/o11
+wget https://github.com/leduong/o11/raw/refs/heads/main/run.sh -O /home/o11/run.sh
+chmod +x /home/o11/server /home/o11/o11 /home/o11/run.sh
 
 # Append new tmpfs entries to /etc/fstab
-mkdir -p /home/o11
-cd /home/o11
 mkdir -p /mnt/hls
 mkdir -p /mnt/dl
-ln -sf /mnt/dl
-ln -sf /mnt/hls
-
-wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr
-wget https://github.com/leduong/o11/raw/refs/heads/main/server
-wget https://github.com/leduong/o11/raw/refs/heads/main/o11
-wget https://github.com/leduong/o11/raw/refs/heads/main/o11.sh
-wget https://github.com/leduong/o11/raw/refs/heads/main/server.sh
-chmod +x server o11 o11.sh server.sh
-
+ln -sf /mnt/dl /home/o11/dl
+ln -sf /mnt/hls /home/o11/hls
+chown -R o11:o11 /home/o11
+chown -R o11:o11 /mnt/hls
+chown -R o11:o11 /mnt/dl
 
 cat <<EOL >> /etc/fstab
 
