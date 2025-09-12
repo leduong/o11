@@ -71,8 +71,8 @@ EOL
 
 
 systemctl daemon-reload
-systemctl enable server.service
-systemctl enable o11.service
+systemctl enable --now server.service
+systemctl enable --now o11.service
 
 ufw allow 22/tcp
 ufw allow 80/tcp
