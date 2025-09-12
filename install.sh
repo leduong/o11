@@ -28,9 +28,6 @@ mkdir -p /mnt/hls
 mkdir -p /mnt/dl
 ln -sf /mnt/dl /home/o11/dl
 ln -sf /mnt/hls /home/o11/hls
-chown -R o11:o11 /home/o11
-chown -R o11:o11 /mnt/hls
-chown -R o11:o11 /mnt/dl
 
 cat <<EOL >> /etc/fstab
 
@@ -72,14 +69,28 @@ StandardError=append:/var/log/server.log
 WantedBy=multi-user.target
 EOL
 
+
 systemctl daemon-reload
 systemctl enable server.service
-systemctl start server.service
 systemctl enable o11.service
-systemctl start o11.service
 
 ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 8283/tcp
-ufw enable
+
+chown -R o11:o11 /home/o11
+chown -R o11:o11 /mnt/hls
+chown -R o11:o11 /mnt/dl
+
+# Get the server's public IPv4 address
+PUBLIC_IP=$(curl -4 -s ifconfig.me)
+
+echo "Setup finished! Please reboot the system to apply all changes."
+echo "After reboot, you can check the status of the services using:"
+echo "  sudo systemctl status o11.service"
+echo "  sudo systemctl status server.service"
+echo "You can view the logs using:"
+echo "  tail -f /home/o11/o11.log"
+echo "  tail -f /var/log/server.log"
+echo "Access the web interface at http://$PUBLIC_IP:8283 with username 'admin' and password '1'."

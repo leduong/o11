@@ -12,6 +12,14 @@ Tested on **Ubuntu 20.04**
 
 ```
 sudo apt update && apt upgrade -y
-sudo apt install -y curl
+sudo apt install -y curl wget
 curl -fsSL https://github.com/leduong/o11/raw/refs/heads/main/install.sh | sudo -E bash -
+```
+
+## Web UI
+
+```
+http://YOUR_IP:8283
+Username: admin
+Password: 1
 ```
