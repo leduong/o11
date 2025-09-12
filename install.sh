@@ -79,9 +79,7 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 8283/tcp
 
-chown -R o11:o11 /home/o11
-chown -R o11:o11 /mnt/hls
-chown -R o11:o11 /mnt/dl
+
 
 # Get the server's public IPv4 address
 PUBLIC_IP=$(curl -4 -s ifconfig.me)
@@ -94,3 +92,9 @@ echo "You can view the logs using:"
 echo "  tail -f /home/o11/o11.log"
 echo "  tail -f /var/log/server.log"
 echo "Access the web interface at http://$PUBLIC_IP:8283 with username 'admin' and password '1'."
+
+# Fix permission issues
+chown -R o11:o11 /home/o11
+chown -R o11:o11 /mnt/hls
+chown -R o11:o11 /mnt/dl
+rm /home/o11/o11.log
