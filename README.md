@@ -8,7 +8,7 @@ BITCOIN :
 bc1q500mnh7fretw2jqfnvpd0m9xvn7llfqqw947f0
 ```
 
-Tested on **Ubuntu 20.04**
+Tested on **Ubuntu 20.04-25.04**
 
 ```
 sudo apt update && apt upgrade -y
