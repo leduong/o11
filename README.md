@@ -23,3 +23,12 @@ http://YOUR_IP:8283
 Username: admin
 Password: 1
 ```
+
+# FIX PERMISSION ISSUES if any
+
+```sh
+chown -R o11:o11 /home/o11
+chown -R o11:o11 /mnt/hls
+chown -R o11:o11 /mnt/dl
+rm /home/o11/o11.log
+```

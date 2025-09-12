@@ -97,4 +97,3 @@ echo "Access the web interface at http://$PUBLIC_IP:8283 with username 'admin' a
 chown -R o11:o11 /home/o11
 chown -R o11:o11 /mnt/hls
 chown -R o11:o11 /mnt/dl
-rm /home/o11/o11.log
