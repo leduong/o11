@@ -80,7 +80,6 @@ ufw allow 443/tcp
 ufw allow 8283/tcp
 
 
-
 # Get the server's public IPv4 address
 PUBLIC_IP=$(curl -4 -s ifconfig.me)
 
