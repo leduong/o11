@@ -44,12 +44,12 @@ Description=Auto-start O11 Streammer
 After=network.target
 
 [Service]
-ExecStart=/home/o11/o11.sh
+ExecStart=/home/o11/run.sh
 WorkingDirectory=/home/o11/
 Restart=always
-User=root
-StandardOutput=append:/var/log/o11.log
-StandardError=append:/var/log/o11.log
+User=o11
+StandardOutput=append:/home/o11/o11.log
+StandardError=append:/home/o11/o11.log
 
 [Install]
 WantedBy=multi-user.target
@@ -61,7 +61,7 @@ Description=Auto-start O11 Server
 After=network.target
 
 [Service]
-ExecStart=/home/o11/server.sh
+ExecStart=/home/o11/server
 WorkingDirectory=/home/o11/
 Restart=always
 User=root
