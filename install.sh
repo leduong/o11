@@ -19,6 +19,7 @@ su - o11 -c "pip3 install --user --break-system-packages curl_cffi redis pywidev
 wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr -O /home/o11/lic.cr
 wget https://github.com/leduong/o11/raw/refs/heads/main/server -O /home/o11/server
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11 -O /home/o11/o11
+wget https://github.com/leduong/o11/raw/refs/heads/main/o11.cfg -O /home/o11/o11.cfg
 wget https://github.com/leduong/o11/raw/refs/heads/main/run.sh -O /home/o11/run.sh
 chmod +x /home/o11/server /home/o11/o11 /home/o11/run.sh
 
