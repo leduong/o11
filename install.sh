@@ -20,8 +20,7 @@ wget https://github.com/leduong/o11/raw/refs/heads/main/lic.cr -O /home/o11/lic.
 wget https://github.com/leduong/o11/raw/refs/heads/main/server -O /home/o11/server
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11 -O /home/o11/o11
 wget https://github.com/leduong/o11/raw/refs/heads/main/o11.cfg -O /home/o11/o11.cfg
-wget https://github.com/leduong/o11/raw/refs/heads/main/run.sh -O /home/o11/run.sh
-chmod +x /home/o11/server /home/o11/o11 /home/o11/run.sh
+chmod +x /home/o11/server /home/o11/o11
 
 # Append new tmpfs entries to /etc/fstab
 mkdir -p /mnt/hls
@@ -39,12 +38,16 @@ cat <<EOL >> /etc/systemd/system/o11.service
 [Unit]
 Description=Auto-start O11 Streammer
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
-ExecStart=/home/o11/run.sh
+ExecStart=/home/o11/o11
 WorkingDirectory=/home/o11/
-Restart=always
 User=o11
+Restart=always
+RestartSec=5s
+
 StandardOutput=append:/home/o11/o11.log
 StandardError=append:/home/o11/o11.log
 
@@ -56,12 +59,16 @@ cat <<EOL >> /etc/systemd/system/server.service
 [Unit]
 Description=Auto-start O11 Server
 After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 ExecStart=/home/o11/server
 WorkingDirectory=/home/o11/
-Restart=always
 User=root
+Restart=always
+RestartSec=5s
+
 StandardOutput=append:/var/log/server.log
 StandardError=append:/var/log/server.log
 
